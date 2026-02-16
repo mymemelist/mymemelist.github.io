@@ -120,10 +120,7 @@
                     <option value="category">Categoria</option>
                     <option value="popular">Mais Visitados</option>
                 </select>
-                <button class="add-link-btn" id="addLinkBtn">
-                    <i class="fas fa-plus"></i>
-                    <span>Adicionar Link</span>
-                </button>
+                <!-- Botão de adicionar removido - edite os links no código -->
             </div>
         </header>
 
@@ -179,10 +176,7 @@
         <div class="empty-state" id="emptyState" style="display: none;">
             <i class="fas fa-inbox"></i>
             <h3>Nenhum link encontrado</h3>
-            <p>Adicione seu primeiro link ou ajuste os filtros de busca</p>
-            <button class="add-link-btn" onclick="document.getElementById('addLinkBtn').click()">
-                <i class="fas fa-plus"></i> Adicionar Link
-            </button>
+            <p>Ajuste os filtros de busca ou adicione links editando o arquivo script.js</p>
         </div>
 
         <!-- Scroll to Top Button -->
@@ -191,106 +185,14 @@
         </button>
     </main>
 
-    <!-- Modal Add/Edit Link -->
-    <div class="modal" id="linkModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">
-                    <i class="fas fa-plus-circle"></i> Adicionar Novo Link
-                </h2>
-                <button class="modal-close" id="modalClose">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form id="linkForm" class="link-form">
-                <div class="form-group">
-                    <label for="linkTitle">
-                        <i class="fas fa-heading"></i> Título *
-                    </label>
-                    <input type="text" id="linkTitle" placeholder="Ex: GitHub" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="linkUrl">
-                        <i class="fas fa-link"></i> URL *
-                    </label>
-                    <input type="url" id="linkUrl" placeholder="https://exemplo.com" required>
-                    <button type="button" class="fetch-btn" id="fetchMetadata">
-                        <i class="fas fa-magic"></i> Auto-preencher
-                    </button>
-                </div>
-
-                <div class="form-group">
-                    <label for="linkDescription">
-                        <i class="fas fa-align-left"></i> Descrição
-                    </label>
-                    <textarea id="linkDescription" rows="3" placeholder="Uma breve descrição sobre o link..."></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="linkCategory">
-                            <i class="fas fa-folder"></i> Categoria *
-                        </label>
-                        <select id="linkCategory" required>
-                            <option value="development">Desenvolvimento</option>
-                            <option value="design">Design</option>
-                            <option value="productivity">Produtividade</option>
-                            <option value="learning">Aprendizado</option>
-                            <option value="tools">Ferramentas</option>
-                            <option value="entertainment">Entretenimento</option>
-                            <option value="other">Outros</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="linkIcon">
-                            <i class="fas fa-icons"></i> Ícone (Font Awesome)
-                        </label>
-                        <input type="text" id="linkIcon" placeholder="fas fa-code">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="linkTags">
-                        <i class="fas fa-tags"></i> Tags (separadas por vírgula)
-                    </label>
-                    <input type="text" id="linkTags" placeholder="javascript, tutorial, grátis">
-                </div>
-
-                <div class="form-group">
-                    <label>
-                        <i class="fas fa-palette"></i> Cor do Card
-                    </label>
-                    <div class="color-picker">
-                        <input type="color" id="linkColor" value="#3b82f6">
-                        <button type="button" class="random-color" id="randomColor">
-                            <i class="fas fa-random"></i> Aleatório
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" id="cancelBtn">
-                        <i class="fas fa-times"></i> Cancelar
-                    </button>
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-save"></i> Salvar Link
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
+    <!-- Modal removido - edite os links no arquivo script.js -->
 
     <!-- Context Menu -->
     <div class="context-menu" id="contextMenu">
         <ul>
             <li data-action="open"><i class="fas fa-external-link-alt"></i> Abrir em Nova Aba</li>
-            <li data-action="edit"><i class="fas fa-edit"></i> Editar</li>
             <li data-action="copy"><i class="fas fa-copy"></i> Copiar URL</li>
             <li data-action="favorite"><i class="fas fa-star"></i> Adicionar aos Favoritos</li>
-            <li class="divider"></li>
-            <li data-action="delete" class="danger"><i class="fas fa-trash"></i> Excluir</li>
         </ul>
     </div>
 
