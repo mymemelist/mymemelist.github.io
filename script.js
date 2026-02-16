@@ -81,7 +81,6 @@ function loadLinksFromStorage() {
     */
     
     links = [
-        
         {
             id: 1,
             title: 'Geopolítica Mundial',
