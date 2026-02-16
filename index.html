@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkVault - Sua Coleção de Links Úteis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <span>LinkVault</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar links..." autocomplete="off">
+            <button id="clearSearch" class="clear-btn" style="display: none;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <h3><i class="fas fa-star"></i> Favoritos</h3>
+                <ul id="favoritesList"></ul>
+            </div>
+
+            <div class="nav-section">
+                <h3><i class="fas fa-folder"></i> Categorias</h3>
+                <ul id="categoriesNav">
+                    <li data-category="all" class="active">
+                        <i class="fas fa-grip"></i> Todas <span class="count">0</span>
+                    </li>
+                    <li data-category="development">
+                        <i class="fas fa-code"></i> Desenvolvimento <span class="count">0</span>
+                    </li>
+                    <li data-category="design">
+                        <i class="fas fa-palette"></i> Design <span class="count">0</span>
+                    </li>
+                    <li data-category="productivity">
+                        <i class="fas fa-rocket"></i> Produtividade <span class="count">0</span>
+                    </li>
+                    <li data-category="learning">
+                        <i class="fas fa-graduation-cap"></i> Aprendizado <span class="count">0</span>
+                    </li>
+                    <li data-category="tools">
+                        <i class="fas fa-wrench"></i> Ferramentas <span class="count">0</span>
+                    </li>
+                    <li data-category="entertainment">
+                        <i class="fas fa-gamepad"></i> Entretenimento <span class="count">0</span>
+                    </li>
+                    <li data-category="other">
+                        <i class="fas fa-ellipsis-h"></i> Outros <span class="count">0</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3><i class="fas fa-tag"></i> Tags Populares</h3>
+                <div id="popularTags" class="tags-container"></div>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Modo Escuro</span>
+            </button>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-link"></i>
+                    <span id="totalLinks">0</span> links
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-heart"></i>
+                    <span id="totalFavorites">0</span> favoritos
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Minha Coleção de Links</h1>
+            </div>
+            <div class="header-right">
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid" title="Grade">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="Lista">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="compact" title="Compacto">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <select id="sortSelect" class="sort-select">
+                    <option value="newest">Mais Recentes</option>
+                    <option value="oldest">Mais Antigos</option>
+                    <option value="name">Nome (A-Z)</option>
+                    <option value="category">Categoria</option>
+                    <option value="popular">Mais Visitados</option>
+                </select>
+                <button class="add-link-btn" id="addLinkBtn">
+                    <i class="fas fa-plus"></i>
+                    <span>Adicionar Link</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Current Category Display -->
+        <div class="category-banner" id="categoryBanner">
+            <div class="banner-content">
+                <i class="fas fa-grip"></i>
+                <div>
+                    <h2 id="currentCategoryTitle">Todas as Categorias</h2>
+                    <p id="currentCategoryDesc">Explore toda sua coleção de links úteis</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-link"></i>
+                <div>
+                    <h3 id="displayedLinks">0</h3>
+                    <p>Links Exibidos</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-eye"></i>
+                <div>
+                    <h3 id="totalVisits">0</h3>
+                    <p>Total de Visitas</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h3 id="recentlyAdded">0</h3>
+                    <p>Adicionados Hoje</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <div>
+                    <h3 id="topRated">0</h3>
+                    <p>Mais Visitados</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Links Container -->
+        <div class="links-container grid-view" id="linksContainer">
+            <!-- Links will be dynamically inserted here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-inbox"></i>
+            <h3>Nenhum link encontrado</h3>
+            <p>Adicione seu primeiro link ou ajuste os filtros de busca</p>
+            <button class="add-link-btn" onclick="document.getElementById('addLinkBtn').click()">
+                <i class="fas fa-plus"></i> Adicionar Link
+            </button>
+        </div>
+
+        <!-- Scroll to Top Button -->
+        <button class="scroll-top" id="scrollTopBtn">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </main>
+
+    <!-- Modal Add/Edit Link -->
+    <div class="modal" id="linkModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    <i class="fas fa-plus-circle"></i> Adicionar Novo Link
+                </h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="linkForm" class="link-form">
+                <div class="form-group">
+                    <label for="linkTitle">
+                        <i class="fas fa-heading"></i> Título *
+                    </label>
+                    <input type="text" id="linkTitle" placeholder="Ex: GitHub" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkUrl">
+                        <i class="fas fa-link"></i> URL *
+                    </label>
+                    <input type="url" id="linkUrl" placeholder="https://exemplo.com" required>
+                    <button type="button" class="fetch-btn" id="fetchMetadata">
+                        <i class="fas fa-magic"></i> Auto-preencher
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkDescription">
+                        <i class="fas fa-align-left"></i> Descrição
+                    </label>
+                    <textarea id="linkDescription" rows="3" placeholder="Uma breve descrição sobre o link..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="linkCategory">
+                            <i class="fas fa-folder"></i> Categoria *
+                        </label>
+                        <select id="linkCategory" required>
+                            <option value="development">Desenvolvimento</option>
+                            <option value="design">Design</option>
+                            <option value="productivity">Produtividade</option>
+                            <option value="learning">Aprendizado</option>
+                            <option value="tools">Ferramentas</option>
+                            <option value="entertainment">Entretenimento</option>
+                            <option value="other">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="linkIcon">
+                            <i class="fas fa-icons"></i> Ícone (Font Awesome)
+                        </label>
+                        <input type="text" id="linkIcon" placeholder="fas fa-code">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="linkTags">
+                        <i class="fas fa-tags"></i> Tags (separadas por vírgula)
+                    </label>
+                    <input type="text" id="linkTags" placeholder="javascript, tutorial, grátis">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <i class="fas fa-palette"></i> Cor do Card
+                    </label>
+                    <div class="color-picker">
+                        <input type="color" id="linkColor" value="#3b82f6">
+                        <button type="button" class="random-color" id="randomColor">
+                            <i class="fas fa-random"></i> Aleatório
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> Salvar Link
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <ul>
+            <li data-action="open"><i class="fas fa-external-link-alt"></i> Abrir em Nova Aba</li>
+            <li data-action="edit"><i class="fas fa-edit"></i> Editar</li>
+            <li data-action="copy"><i class="fas fa-copy"></i> Copiar URL</li>
+            <li data-action="favorite"><i class="fas fa-star"></i> Adicionar aos Favoritos</li>
+            <li class="divider"></li>
+            <li data-action="delete" class="danger"><i class="fas fa-trash"></i> Excluir</li>
+        </ul>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
