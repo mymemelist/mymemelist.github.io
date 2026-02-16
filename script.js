@@ -85,11 +85,11 @@ function loadLinksFromStorage() {
             id: 1,
             title: 'Geopolítica Mundial',
             url: 'https://youtube.com/@geopoliticamundial',
-            description: 'Organize projetos com quadros Kanban',
+            description: 'Geopolítica, Segurança Internacional, Inteligência e Crime Organizado.',
             category: 'productivity',
             icon: 'fab fa-youtube',
             tags: ['geo', 'política', 'geopolítica'],
-            color: '#0079BF',
+            color: '#ff0033',
             favorite: false,
             visits: 0,
             createdAt: new Date(Date.now() - 518400000).toISOString()
