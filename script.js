@@ -56,71 +56,158 @@ function initializeParticles() {
 }
 
 // ==================== LOCAL STORAGE ====================
-function saveLinksToStorage() {
-    localStorage.setItem('linkVault_links', JSON.stringify(links));
-}
+// LocalStorage desabilitado - links são gerenciados direto no código
+// Para adicionar/editar/remover links, edite a seção SEUS LINKS abaixo
 
 function loadLinksFromStorage() {
-    const stored = localStorage.getItem('linkVault_links');
-    if (stored) {
-        links = JSON.parse(stored);
-    } else {
-        // Sample data
-        links = [
-            {
-                id: Date.now() + 1,
-                title: 'GitHub',
-                url: 'https://github.com',
-                description: 'Plataforma de hospedagem de código-fonte e controle de versão usando Git',
-                category: 'development',
-                icon: 'fab fa-github',
-                tags: ['git', 'código', 'colaboração'],
-                color: '#181717',
-                favorite: true,
-                visits: 127,
-                createdAt: new Date().toISOString()
-            },
-            {
-                id: Date.now() + 2,
-                title: 'Figma',
-                url: 'https://figma.com',
-                description: 'Ferramenta colaborativa de design de interface e prototipagem',
-                category: 'design',
-                icon: 'fas fa-pencil-ruler',
-                tags: ['design', 'ui', 'prototipagem'],
-                color: '#F24E1E',
-                favorite: false,
-                visits: 89,
-                createdAt: new Date(Date.now() - 86400000).toISOString()
-            },
-            {
-                id: Date.now() + 3,
-                title: 'Notion',
-                url: 'https://notion.so',
-                description: 'Workspace all-in-one para anotações, documentos e gerenciamento de projetos',
-                category: 'productivity',
-                icon: 'fas fa-file-alt',
-                tags: ['produtividade', 'notas', 'documentos'],
-                color: '#000000',
-                favorite: true,
-                visits: 234,
-                createdAt: new Date(Date.now() - 172800000).toISOString()
-            },
-            {
-                id: Date.now() + 4,
-                title: 'freeCodeCamp',
-                url: 'https://freecodecamp.org',
-                description: 'Aprenda a programar gratuitamente com tutoriais interativos',
-                category: 'learning',
-                icon: 'fas fa-code',
-                tags: ['programação', 'grátis', 'cursos'],
-                color: '#0A0A23',
-                favorite: false,
-                visits: 56,
-                createdAt: new Date(Date.now() - 259200000).toISOString()
+    // ====================================
+    // 📝 SEUS LINKS - EDITE AQUI!
+    // ====================================
+    // Para adicionar novos links, copie e cole o template abaixo:
+    /*
+    {
+        id: Date.now() + X, // Troque X por um número único
+        title: 'Nome do Site',
+        url: 'https://exemplo.com',
+        description: 'Descrição do site',
+        category: 'development', // development, design, productivity, learning, tools, entertainment, other
+        icon: 'fas fa-code', // Ícone Font Awesome
+        tags: ['tag1', 'tag2', 'tag3'],
+        color: '#3b82f6', // Cor em hexadecimal
+        favorite: false, // true ou false
+        visits: 0,
+        createdAt: new Date().toISOString()
+    },
+    */
+    
+    links = [
+        {
+            id: 1,
+            title: 'GitHub',
+            url: 'https://github.com',
+            description: 'Plataforma de hospedagem de código-fonte e controle de versão usando Git',
+            category: 'development',
+            icon: 'fab fa-github',
+            tags: ['git', 'código', 'colaboração', 'opensource'],
+            color: '#181717',
+            favorite: true,
+            visits: 0,
+            createdAt: new Date().toISOString()
+        },
+        {
+            id: 2,
+            title: 'Figma',
+            url: 'https://figma.com',
+            description: 'Ferramenta colaborativa de design de interface e prototipagem',
+            category: 'design',
+            icon: 'fas fa-pencil-ruler',
+            tags: ['design', 'ui', 'prototipagem', 'colaboração'],
+            color: '#F24E1E',
+            favorite: false,
+            visits: 0,
+            createdAt: new Date(Date.now() - 86400000).toISOString()
+        },
+        {
+            id: 3,
+            title: 'Notion',
+            url: 'https://notion.so',
+            description: 'Workspace all-in-one para anotações, documentos e gerenciamento de projetos',
+            category: 'productivity',
+            icon: 'fas fa-file-alt',
+            tags: ['produtividade', 'notas', 'documentos', 'organização'],
+            color: '#000000',
+            favorite: true,
+            visits: 0,
+            createdAt: new Date(Date.now() - 172800000).toISOString()
+        },
+        {
+            id: 4,
+            title: 'freeCodeCamp',
+            url: 'https://freecodecamp.org',
+            description: 'Aprenda a programar gratuitamente com tutoriais interativos',
+            category: 'learning',
+            icon: 'fas fa-code',
+            tags: ['programação', 'grátis', 'cursos', 'educação'],
+            color: '#0A0A23',
+            favorite: false,
+            visits: 0,
+            createdAt: new Date(Date.now() - 259200000).toISOString()
+        },
+        {
+            id: 5,
+            title: 'Stack Overflow',
+            url: 'https://stackoverflow.com',
+            description: 'Maior comunidade de programadores do mundo',
+            category: 'development',
+            icon: 'fab fa-stack-overflow',
+            tags: ['programação', 'comunidade', 'dúvidas'],
+            color: '#F58025',
+            favorite: false,
+            visits: 0,
+            createdAt: new Date(Date.now() - 345600000).toISOString()
+        },
+        {
+            id: 6,
+            title: 'Canva',
+            url: 'https://canva.com',
+            description: 'Ferramenta de design gráfico online',
+            category: 'design',
+            icon: 'fas fa-paint-brush',
+            tags: ['design', 'gráfico', 'templates', 'fácil'],
+            color: '#00C4CC',
+            favorite: false,
+            visits: 0,
+            createdAt: new Date(Date.now() - 432000000).toISOString()
+        },
+        {
+            id: 7,
+            title: 'Trello',
+            url: 'https://trello.com',
+            description: 'Organize projetos com quadros Kanban',
+            category: 'productivity',
+            icon: 'fab fa-trello',
+            tags: ['produtividade', 'kanban', 'projetos', 'tarefas'],
+            color: '#0079BF',
+            favorite: false,
+            visits: 0,
+            createdAt: new Date(Date.now() - 518400000).toISOString()
+        },
+        {
+            id: 8,
+            title: 'MDN Web Docs',
+            url: 'https://developer.mozilla.org',
+            description: 'Documentação completa sobre tecnologias web',
+            category: 'learning',
+            icon: 'fab fa-firefox-browser',
+            tags: ['documentação', 'web', 'html', 'css', 'javascript'],
+            color: '#000000',
+            favorite: true,
+            visits: 0,
+            createdAt: new Date(Date.now() - 604800000).toISOString()
+        }
+        // ADICIONE MAIS LINKS AQUI seguindo o mesmo formato
+    ];
+    
+    // Carregar favoritos do localStorage (apenas favoritos são salvos)
+    const savedFavorites = localStorage.getItem('linkVault_favorites');
+    if (savedFavorites) {
+        const favoriteIds = JSON.parse(savedFavorites);
+        links.forEach(link => {
+            if (favoriteIds.includes(link.id)) {
+                link.favorite = true;
             }
-        ];
-        saveLinksToStorage();
+        });
+    }
+    
+    // Carregar contador de visitas do localStorage
+    const savedVisits = localStorage.getItem('linkVault_visits');
+    if (savedVisits) {
+        const visits = JSON.parse(savedVisits);
+        links.forEach(link => {
+            if (visits[link.id]) {
+                link.visits = visits[link.id];
+            }
+        });
     }
 }
 
@@ -172,31 +259,6 @@ function initializeEventListeners() {
         renderLinks();
     });
 
-    // Add link button
-    document.getElementById('addLinkBtn').addEventListener('click', openAddLinkModal);
-
-    // Modal
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    document.getElementById('cancelBtn').addEventListener('click', closeModal);
-    document.getElementById('linkForm').addEventListener('submit', handleFormSubmit);
-    
-    // Click outside modal to close
-    document.getElementById('linkModal').addEventListener('click', (e) => {
-        if (e.target.id === 'linkModal') {
-            closeModal();
-        }
-    });
-
-    // Random color
-    document.getElementById('randomColor').addEventListener('click', () => {
-        const colors = ['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        document.getElementById('linkColor').value = randomColor;
-    });
-
-    // Fetch metadata
-    document.getElementById('fetchMetadata').addEventListener('click', fetchUrlMetadata);
-
     // Theme toggle
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
@@ -236,14 +298,8 @@ function initializeEventListeners() {
             e.preventDefault();
             document.getElementById('searchInput').focus();
         }
-        // Ctrl/Cmd + N = New link
-        if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
-            e.preventDefault();
-            openAddLinkModal();
-        }
         // Escape = Close modal
         if (e.key === 'Escape') {
-            closeModal();
             document.getElementById('contextMenu').classList.remove('active');
         }
     });
@@ -295,27 +351,11 @@ function renderLinks() {
 
             // Action buttons
             const favoriteBtn = card.querySelector('.favorite-btn');
-            const editBtn = card.querySelector('.edit-btn');
-            const deleteBtn = card.querySelector('.delete-btn');
 
             if (favoriteBtn) {
                 favoriteBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     toggleFavorite(linkId);
-                });
-            }
-
-            if (editBtn) {
-                editBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openEditLinkModal(linkId);
-                });
-            }
-
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    deleteLink(linkId);
                 });
             }
         });
@@ -349,12 +389,6 @@ function createLinkCard(link) {
                 <div class="link-actions">
                     <button class="link-action-btn favorite-btn ${link.favorite ? 'active' : ''}" title="Favorito">
                         <i class="fas fa-star"></i>
-                    </button>
-                    <button class="link-action-btn edit-btn" title="Editar">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="link-action-btn delete-btn" title="Excluir">
-                        <i class="fas fa-trash"></i>
                     </button>
                 </div>
             </div>
@@ -524,21 +558,34 @@ function visitLink(linkId) {
     const link = links.find(l => l.id === linkId);
     if (link) {
         link.visits++;
-        saveLinksToStorage();
+        saveVisits();
         updateStats();
         window.open(link.url, '_blank');
     }
+}
+
+function saveVisits() {
+    const visits = {};
+    links.forEach(link => {
+        visits[link.id] = link.visits;
+    });
+    localStorage.setItem('linkVault_visits', JSON.stringify(visits));
 }
 
 function toggleFavorite(linkId) {
     const link = links.find(l => l.id === linkId);
     if (link) {
         link.favorite = !link.favorite;
-        saveLinksToStorage();
+        saveFavorites();
         renderLinks();
         showToast('success', link.favorite ? 'Adicionado aos favoritos!' : 'Removido dos favoritos');
         updateFavoritesList();
     }
+}
+
+function saveFavorites() {
+    const favoriteIds = links.filter(l => l.favorite).map(l => l.id);
+    localStorage.setItem('linkVault_favorites', JSON.stringify(favoriteIds));
 }
 
 function updateFavoritesList() {
@@ -563,96 +610,6 @@ function deleteLink(linkId) {
         renderLinks();
         updateCategoryCounts();
         showToast('success', 'Link excluído com sucesso!');
-    }
-}
-
-// ==================== MODAL ====================
-function openAddLinkModal() {
-    editingLinkId = null;
-    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-plus-circle"></i> Adicionar Novo Link';
-    document.getElementById('linkForm').reset();
-    document.getElementById('linkColor').value = '#3b82f6';
-    document.getElementById('linkModal').classList.add('active');
-}
-
-function openEditLinkModal(linkId) {
-    const link = links.find(l => l.id === linkId);
-    if (!link) return;
-
-    editingLinkId = linkId;
-    document.getElementById('modalTitle').innerHTML = '<i class="fas fa-edit"></i> Editar Link';
-    document.getElementById('linkTitle').value = link.title;
-    document.getElementById('linkUrl').value = link.url;
-    document.getElementById('linkDescription').value = link.description;
-    document.getElementById('linkCategory').value = link.category;
-    document.getElementById('linkIcon').value = link.icon;
-    document.getElementById('linkTags').value = link.tags.join(', ');
-    document.getElementById('linkColor').value = link.color;
-    document.getElementById('linkModal').classList.add('active');
-}
-
-function closeModal() {
-    document.getElementById('linkModal').classList.remove('active');
-    editingLinkId = null;
-}
-
-function handleFormSubmit(e) {
-    e.preventDefault();
-
-    const linkData = {
-        title: document.getElementById('linkTitle').value,
-        url: document.getElementById('linkUrl').value,
-        description: document.getElementById('linkDescription').value,
-        category: document.getElementById('linkCategory').value,
-        icon: document.getElementById('linkIcon').value || 'fas fa-link',
-        tags: document.getElementById('linkTags').value.split(',').map(t => t.trim()).filter(t => t),
-        color: document.getElementById('linkColor').value
-    };
-
-    if (editingLinkId) {
-        // Edit existing link
-        const link = links.find(l => l.id === editingLinkId);
-        if (link) {
-            Object.assign(link, linkData);
-            showToast('success', 'Link atualizado com sucesso!');
-        }
-    } else {
-        // Add new link
-        const newLink = {
-            id: Date.now(),
-            ...linkData,
-            favorite: false,
-            visits: 0,
-            createdAt: new Date().toISOString()
-        };
-        links.unshift(newLink);
-        showToast('success', 'Link adicionado com sucesso!');
-    }
-
-    saveLinksToStorage();
-    closeModal();
-    renderLinks();
-    updateCategoryCounts();
-}
-
-async function fetchUrlMetadata() {
-    const url = document.getElementById('linkUrl').value;
-    if (!url) {
-        showToast('warning', 'Digite uma URL primeiro!');
-        return;
-    }
-
-    showToast('info', 'Buscando informações...');
-    
-    // Simulated metadata fetch (in real app, use a backend API)
-    // For now, just extract domain name
-    try {
-        const urlObj = new URL(url);
-        const domain = urlObj.hostname.replace('www.', '');
-        document.getElementById('linkTitle').value = domain.split('.')[0].charAt(0).toUpperCase() + domain.split('.')[0].slice(1);
-        showToast('success', 'Informações preenchidas!');
-    } catch (error) {
-        showToast('error', 'URL inválida!');
     }
 }
 
@@ -685,18 +642,12 @@ function handleContextAction(action, linkId) {
         case 'open':
             window.open(link.url, '_blank');
             break;
-        case 'edit':
-            openEditLinkModal(linkId);
-            break;
         case 'copy':
             navigator.clipboard.writeText(link.url);
             showToast('success', 'URL copiada!');
             break;
         case 'favorite':
             toggleFavorite(linkId);
-            break;
-        case 'delete':
-            deleteLink(linkId);
             break;
     }
 }
@@ -768,35 +719,6 @@ function formatDate(dateString) {
     if (days < 30) return `${Math.floor(days / 7)} semanas atrás`;
     if (days < 365) return `${Math.floor(days / 30)} meses atrás`;
     return `${Math.floor(days / 365)} anos atrás`;
-}
-
-// ==================== EXPORT/IMPORT ====================
-function exportLinks() {
-    const dataStr = JSON.stringify(links, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `linkvault-backup-${Date.now()}.json`;
-    link.click();
-    showToast('success', 'Links exportados com sucesso!');
-}
-
-function importLinks(file) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        try {
-            const imported = JSON.parse(e.target.result);
-            links = imported;
-            saveLinksToStorage();
-            renderLinks();
-            updateCategoryCounts();
-            showToast('success', 'Links importados com sucesso!');
-        } catch (error) {
-            showToast('error', 'Erro ao importar arquivo!');
-        }
-    };
-    reader.readAsText(file);
 }
 
 // Initialize favorites list
